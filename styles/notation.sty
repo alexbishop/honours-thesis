@@ -1,0 +1,24 @@
+%  notation.sty   Alex Bishop, 20/08/17
+%
+% Some functions that are used throughout this paper
+
+\usepackage{amsmath}
+\usepackage{stmaryrd}
+
+\DeclareMathOperator{\Cay}{Cay} % Cayley Graphs
+\DeclareMathOperator{\Stab}{Stab} % Stabiliser
+\DeclareMathOperator{\Aut}{Aut} % Automorphism Group
+\DeclareMathOperator{\F}{F} % Free group
+
+\DeclareMathOperator{\sig}{sig}
+
+\newcommand{\equivClass}[1]{\left\llbracket #1 \right\rrbracket}
+
+\newcommand{\recurDef}[1]{\left\llangle #1 \right\rrangle}
+
+\newcommand{\spaceship}{\left\langle = \right\rangle}
+
+\usepackage{tikz}
+
+\newcommand{\tActionNotation}{{\tikz{\fill[black]  (-1,-1) -- (-1.1,-1.25) -- (-0.9,-1.25) -- cycle;}}}
+\newcommand{\idActionNotation}{{\tikz{\draw (0,-1) -- (-1.1+1,-1.25) -- (-0.9+1,-1.25) -- cycle;}}}

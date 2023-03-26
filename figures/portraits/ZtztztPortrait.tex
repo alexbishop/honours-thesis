@@ -1,0 +1,62 @@
+\documentclass[tikz]{standalone}
+\usepackage{forest}
+\usetikzlibrary{arrows.meta,bending,calc}
+
+%portrait for the word: Ztztzt
+
+
+\forestset{
+  mk arc/.style={
+    tikz+={
+    	\draw [-{Stealth[bend]}]
+    	  let
+    	    \p1=($(!u.parent anchor)!1/3!(!u1.child anchor)$),
+    	    \p2=($(!u.parent anchor)$),
+    	    \p3=($(!ul.child anchor)$)
+    	  in
+    	    (\p1) 
+    	      [bend right] to
+    	    ({\x2 + (\y1 - \y2)*(\x2-\x3)/(\y2-\y3) },\y1);
+    }
+  },
+  mk inverse arc/.style={
+  	tikz+={
+  		\draw [-{Stealth[bend]}]
+  		  let
+  		    \p1=($(!u.parent anchor)!1/3!(!ul.child anchor)$),
+  		    \p2=($(!u.parent anchor)$),
+  		    \p3=($(!u1.child anchor)$)
+  		  in
+  		    (\p1) 
+  		      [bend left] to
+  		    ({\x2 + (\y1 - \y2)*(\x2-\x3)/(\y2-\y3) },\y1);
+  	}
+  },
+  t negate/.style={
+    tikz+={\draw [] ($(!.child anchor)$) node [] {$t^{-1}$};}
+  },
+  z negate/.style={
+    tikz+={\draw [] ($(!.child anchor)$) node [] {$z^{-1}$};}
+  },
+}
+\begin{document}
+\begin{forest}
+[, circle,draw,
+    [, circle,draw,
+        [$t$\vphantom{$1tzz^{-1}t^{-1}$}, mk inverse arc]
+        [$1$\vphantom{$1tzz^{-1}t^{-1}$}, ]
+        [$z$\vphantom{$1tzz^{-1}t^{-1}$}, ]
+    ]
+    [, circle,draw,
+        [$t$\vphantom{$1tzz^{-1}t^{-1}$}, mk arc]
+        [$1$\vphantom{$1tzz^{-1}t^{-1}$}, ]
+        [$z$\vphantom{$1tzz^{-1}t^{-1}$}, ]
+    ]
+    [, circle,draw,
+        [$1$\vphantom{$1tzz^{-1}t^{-1}$}, mk arc]
+        [\phantom{$z$}\vphantom{$1tzz^{-1}t^{-1}$}, z negate, ]
+        [\phantom{$t$}\vphantom{$1tzz^{-1}t^{-1}$}, t negate, ]
+    ]
+]
+\end{forest}
+\end{document}

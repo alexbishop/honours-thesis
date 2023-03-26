@@ -1,0 +1,122 @@
+\documentclass[twoside]{report}
+
+% the following conforms with UoN's guidelines on Thesis formats
+%  I'm not sure about the 1.5 line spaceing: looks a bit to much
+\usepackage[a4paper,width=150mm,top=30mm,bottom=20mm]{geometry}
+%\linespread{1.25} % this is equivalent to 1.5 line spacing in MS Word
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[australian]{babel}
+
+\usepackage{csquotes}
+
+\usepackage[hidelinks]{hyperref}
+
+%\usepackage{showlabels}
+
+\usepackage{parskip}
+
+\usepackage{microtype}
+
+\usepackage[backend=biber]{biblatex}
+\addbibresource{references.bib}
+
+\usepackage{amsthm,amsfonts,amssymb,amsmath,mathtools,graphicx}
+
+\usepackage[linesnumbered,ruled]{algorithm2e}
+
+% defines a function type
+\SetKwProg{Fn}{Function}{}{end}
+
+% the following are algorithms that will be defined
+%  in pseudocode within this document
+\SetKwFunction{WP}{WordProblem}
+\SetKwFunction{COMP}{compare}
+
+\SetKwFunction{SORT}{sort}
+\SetKwFunction{MERGE}{merge}
+\SetKwFunction{MERGEFINAL}{mergeFinal}
+
+% ensures that the pseudocode doesn't use italics 
+\SetArgSty{textup}
+
+\usepackage{subcaption}
+
+\usepackage[capitalise,noabbrev]{cleveref}
+
+\usepackage{tikz}
+
+\usepackage{siunitx}
+
+\usepackage{styles/doubleangle}
+\usepackage{styles/theoremstyles}
+\usepackage{styles/comments}
+\usepackage{styles/notation}
+
+\title{
+	{\LARGE Geodesic Growth of the Fabrykowski-Gupta Group}\\
+	{\Large Honours Thesis}\\
+	{\large University of Newcastle}\\\ \\
+	{
+		\includegraphics[height=10cm]{figures/cover}
+	}
+}
+\author{
+	Author:\\Alex Bishop
+\and
+	Supervisor:\\A/Prof Murray Elder
+}
+\date{Submitted: 27 October 2017}
+
+\hypersetup{pdfinfo={
+	Author={Alex Bishop},
+	Title={Geodesic Growth of the Fabrykowski-Gupta Group},
+	Subject={Geometric Group Theory},
+	Keywords={Fabrykowski-Gupta;Group Theory;Geodesic Growth;Complexity Analysis},
+}}
+
+%\includeonly{chapters/results}
+
+\begin{document}
+
+\pagenumbering{gobble}
+\maketitle
+
+\clearpage
+\pagenumbering{roman}
+
+\include{chapters/abstract}
+
+\include{chapters/statement}
+
+\include{chapters/thanks}
+
+\tableofcontents
+
+\clearpage
+\pagenumbering{arabic}
+
+\include{chapters/introduction}
+
+\include{chapters/notation}
+
+\include{chapters/FabrikowskiGupta}
+
+\include{chapters/generatingGeodesics}
+
+\include{chapters/results}
+
+\clearpage
+\phantomsection
+
+\addcontentsline{toc}{chapter}{Bibliography}
+\printbibliography
+
+\appendix
+
+\include{chapters/appendixCode}
+
+\include{chapters/appendixData}
+
+\end{document}

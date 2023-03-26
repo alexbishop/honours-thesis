@@ -1,0 +1,25 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usetikzlibrary{trees}
+
+\begin{document}
+\begin{tikzpicture}[grow'=right]
+\tikzset{execute at begin node=\strut}
+\tikzset{every tree node/.style={anchor=base west}}
+\Tree
+[. {$\varepsilon$}
+  [. {$t$}
+    [. {$z$}
+    [. {$t$}
+    [. {$z$} ]]]
+  ]
+  [. {$t^{-1}$}
+  [. {$z$}
+  [. {$t$}
+  [. {$z$} ]]]
+  ]
+];
+\end{tikzpicture}
+\end{document}

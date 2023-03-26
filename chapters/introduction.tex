@@ -1,0 +1,53 @@
+\chapter{Introduction}
+
+Introduced, independently, in 1955 by A. S. \v{S}varc  %Albert Schwarz 
+\cite{SvarcEquivClass} and in 1968 by John Milnor \cite{MilnorEquivClass}, the concept of \emph{growth} has been at the centre of many profound results in group theory.
+The concept will be formally introduced and defined in \cref{sec:growth-functions,sec:interGrowth} of the next chapter.
+Informally, a growth function counts the number of distinct group elements which may be represented as a composition of $n$, or fewer, generators; such functions are usually viewed with respect to their asymptotic behaviours as described by \v{S}varc and Milnor in their respective papers as aforementioned.
+
+In 1968, it became apparent that every known class of group in the literature possessed a growth function that was either polynomial $n^d$ with $d$ a non-negative integer, or exponential $e^n$.
+Thus, Milnor formally posed the question as to whether these were the only possible growth types i.e.\ whether there exists a group whose growth type is neither polynomial of a non-negative integer degree nor exponential \cite{Milnor1968}.
+This question was partially answered in 1972 when Hyman Bass showed that if a group has growth of polynomial type $n^\alpha$, then $\alpha$ is a non-negative integer \cite{PolynomialDegree}.
+The remaining question of the existence of intermediate growth (i.e.\ growth that is faster than any polynomial and slower than an exponential) remained unsolved until 1984 when Rostislav Grigorchuk proved a particular group, which he first introduced in \cite{GrigFirst}, to have such a growth type \cite{GrigInterm}; for a proof of the intermediate growth of this group and an introduction to intermediate growth, the reader is directed to the survey article \cite{GrigPak}.
+
+Grigorchuk's example  has been the focus of much of the research into intermediate growth.
+Many of the known classes of groups with intermediate growth are extensions of Grigorchuk's original example or one of its generalisations, as introduced in \cite{GrigInterm}.
+In fact, using this generalisation, Laurent Bartholdi and Anna Erschler were able to show the existence of a continuum of potential intermediate growths of groups \cite{PossibleIntermGrowth}; in particular, they showed that if $\eta$ is the positive root of the polynomial $x^3 - x^2 -2x - 4$, then given any function $f : \mathbb{R}_+ \to \mathbb{R}_+$ such that $f(2R) \leq f(R)^2 \leq f(\eta R)$ for all sufficiently large $R$, then there exists a group with growth equivalent to $f$;
+further, such a group is equivalent to a wreath product of a generalised version of Grigorchuk's construction by a finite group.
+
+As mentioned before, there are deep connections between properties of groups and their growth, one such example being the famous theorem of Mikhael Gromov, that is, that a group has polynomial growth if and only if it is virtually nilpotent \cite{GromovTheorem}.
+Furthermore, there are still many open problems remaining in the study of growth, one such open problem, introduced in \cite{GrigGap}, is whether there exists a group with intermediate growth that is equivalent to or slower than $e^{\sqrt{n}}$.
+
+This thesis is interested in a similar concept to growth known as \emph{geodesic growth}; informally, a geodesic growth function counts the number of geodesics, with respect to some chosen generating set, that may be constructed from the composition of $n$, or fewer, generators.
+Similar to growth functions, geodesic growth functions can be studied with respect to their asymptotic properties.
+Such asymptotic properties of geodesic growth are of interest within this thesis.
+
+Unlike the usual concept of growth, at present, geodesic growth has received little attention in the literature.
+Attempts have been made to generalise theorems, such as Gromov's, to geodesics. In \cite{OnGroupsPolynomial} it was shown that if a group $G$ contains an element $x \in G$ whose normal closure is an abelian subgroup of finite index, then there is a generating set with respect to which the geodesic growth of $G$ is polynomial.
+Although this paper didn't present a classification of groups with polynomial geodesic growth, it did show the existence of non-obvious groups (i.e.\ groups other than $\mathbb{Z} = \left\langle z \, \middle\vert - \right\rangle$ with respect to its usual generating set) with polynomial geodesic growth.
+
+This thesis is interested in the open question, similar to Milnor's in 1968, whether there exists a group with a generating set with respect to which the geodesic growth is intermediate.
+
+A natural starting point in the search for a group with intermediate geodesic growth would be Grigorchuk's first construction (of a group with intermediate growth) \cite{GrigFirst}.
+However, it was shown in an unpublished paper by Murray Elder, Mauricio Gutierrez, and Zoran \v{S}uni\'c, a result that was later released as part of the PhD thesis of Julie Br\"onnimann \cite{Julie2016GeodesicGrowth}, that the geodesic growth of this group is exponential; this proof was accomplished by considering the geodesics which appear in the $n$-th level Schreier graphs of the group.
+Further, using this technique Br\"onnimann was able to show that almost all groups acting on regular rooted trees (which she was aware of in the literature) to be of exponential geodesic growth when considered with respect to their usual generating sets, the only exception being the so-called \emph{Fabrykowski-Gupta group}.
+
+The Fabrykowski-Gupta group was first defined by Jacek Fabrykowski and Narain Gupta in \cite{FabGuptaI}.
+This paper also showed the group to have intermediate growth, however, a problem in this proof led to a second paper \cite{FabGuptaII} by Fabrykowski and Gupta, followed by a third proof in \cite{OnGrowth} by Bartholdi and Floriane Pochon which provided some missing details of \cite{FabGuptaII}.
+This result is of interest in this thesis as the geodesic growth of a group is bounded from below by its usual growth, thus for a group to have intermediate geodesic growth, it can have regular growth which is intermediate at most.
+
+The Fabrykowski-Gupta group remains a potential example of intermediate geodesic growth, and thus this group is the study of this thesis.
+This paper will present a computation-based technique for studying the geodesic growth of Fabrykowski-Gupta, and similar, groups.
+
+In the literature, few groups have known geodesic growth types beyond the classification of either polynomial % of geodesic.
+or exponential.
+For such groups, their geodesic growth types are known explicitly.
+Examples of such groups are abelian groups \cite{Julie2016GeodesicGrowth}, and classes of right-angled Artin groups and Coxeter groups \cite{GeodesicsCoxeterI,GeodesicsCoxeterII}.
+Hence, few general techniques of studying geodesic growth are known.
+
+Given the lack of techniques available in the literature, this thesis will present an efficient algorithm for generating the geodesics of the Fabrykowski-Gupta group (see \cref{chp:FG-group,chp:generating-geodesics} for this algorithm and its time complexity), and collecting them into their respective equivalence classes as it does so.
+The idea of using this algorithm is to generate a sufficient amount of data such as to find patterns therein, and thus to assist in constructing theorems about the geodesic growth of this group.
+
+It will be shown that this geodesic generating algorithm is an improvement, with respect to time complexity, over the previously known brute force method.
+Further, remarks will be made as to the possibility of extending this algorithm to similar groups.
+This thesis will conclude with a summary of the results which were obtained from running this geodesic generating algorithm.

@@ -1,0 +1,246 @@
+\chapter{Pseudocode}
+\label{apx:modified-mergesort}
+
+\section{Final Merge Algorithm}
+\label{apx:final-merge}
+
+\begin{algorithm}[h!]
+	
+	\Fn(){\MERGEFINAL{$\mathcal{S}, \mathcal{T}$}}{
+		\KwData{sorted lists $\mathcal{S}$ of length $n$ geodesics and $\mathcal{T}$ of length $n+1$ extended words}
+		\KwResult{returns the length $n+1$ geodesics}
+		
+		\BlankLine
+		
+		\tcp{Initialise the output list to empty}
+		$\mathcal{L}$ $\gets$ $()$\;
+		
+		\BlankLine
+		
+		\tcp{$i$ and $j$ index the lists $\mathcal{S}$ and $\mathcal{T}$ respectively}
+		$i$ $\gets$ $0$\;
+		$j$ $\gets$ $0$\;
+		
+		\BlankLine
+		
+		\tcp{$n$ and $m$ are the sizes of the lists $\mathcal{S}$ and $\mathcal{T}$ respetively}
+		$n$ $\gets$ $\left\vert S \right\vert$\;
+		$m$ $\gets$ $\left\vert T \right\vert$\;
+		
+		\BlankLine
+		
+		\tcp{The following merges the lists until the end of one is reached}
+		
+		\BlankLine
+		
+		\While{$i \leq n$ and $j \leq m$}{
+			
+			cmp $\gets$ \COMP($\textrm{rep}(\mathcal{S}_{i})$, $\textrm{rep}(\mathcal{T}_{j})$)\tcc*{compare the equivalence classes}
+			
+			\BlankLine
+			
+			\uIf{$\text{cmp} = 0$}{
+				
+				\tcp{$\mathcal{T}_j$ is not a geodesic $n+1$}
+				
+				$i$ $\gets$ $i+1$\;
+				$j$ $\gets$ $j+1$\;
+			}
+			\uElseIf{$\text{cmp} < 0$}{
+				\tcp{$\mathcal{S}_i < \mathcal{T}_j$}
+				
+				$i$ $\gets$ $i+1$\;
+			}
+			\Else{
+				append $\mathcal{T}_j$ to $\mathcal{L}$\tcc*{$\mathcal{T}_i < \mathcal{S}_j$ and thus $\mathcal{T}_i$ should be added next}
+				
+				$j$ $\gets$ $j+1$\;
+			}
+		}
+		
+		\BlankLine
+		
+		\tcp{The following adds any remaining elements $\mathcal{T}$ to $\mathcal{L}$}
+		
+		\If{$j < m$}{
+			append $\mathcal{S}_j, \mathcal{S}_{j+1}, \ldots, \mathcal{S}_{m}$ to $\mathcal{L}$\;
+		}
+		
+		\BlankLine
+		
+		\tcp{$\mathcal{L}$ will now contain the list of length $n+1$ geodesics}
+		
+		\BlankLine
+		
+		\Return{$\mathcal{L}$}\;
+		
+	}
+	
+	\caption{Merges a list of length $n$ geodesics with length $n+1$ words}
+	\label{alg:mergesort:finalmerge}
+\end{algorithm}
+
+\newpage
+\section{Merge Algorithm}
+\label{apx:modified-mergesort:merge}
+
+\begin{algorithm}[h!]
+	
+	\Fn(){\MERGE{$\mathcal{S}, \mathcal{T}$}}{
+		\KwData{two sorted lists, $\mathcal{S}$ and $\mathcal{T}$, of collections of length $n+1$ words to merge}
+		\KwResult{returns the merged list}
+		
+		\BlankLine
+		
+		\tcp{Initialise the output list to empty}
+		$\mathcal{L}$ $\gets$ $()$\;
+		
+		\BlankLine
+		
+		\tcp{$i$ and $j$ index the lists $\mathcal{S}$ and $\mathcal{T}$ respectively}
+		$i$ $\gets$ $0$\;
+		$j$ $\gets$ $0$\;
+		
+		\BlankLine
+		
+		\tcp{$n$ and $m$ are the sizes of the lists $\mathcal{S}$ and $\mathcal{T}$ respetively}
+		$n$ $\gets$ $\left\vert S \right\vert$\;
+		$m$ $\gets$ $\left\vert T \right\vert$\;
+		
+		\BlankLine
+		
+		\tcp{The following merges the lists until the end of one is reached}
+		
+		\BlankLine
+		
+		\While{$i \leq n$ and $j \leq m$}{
+			
+			\BlankLine
+			
+			cmp $\gets$ \COMP($\textrm{rep}(\mathcal{S}_{i})$, $\textrm{rep}(\mathcal{T}_{j})$)\tcc*{compare the equivalence classes}
+			
+			\BlankLine
+			
+			\uIf{$\text{cmp} = 0$}{
+				
+				append $\mathcal{S}_{i} \cup \mathcal{T}_{j}$ to $\mathcal{L}$\tcc*{The collections should be combined}
+				
+				\BlankLine
+				
+				$i$ $\gets$ $i+1$\;
+				$j$ $\gets$ $j+1$\;
+			}
+			\uElseIf{$\text{cmp} < 0$}{
+				append $\mathcal{S}_i$ to $\mathcal{L}$\tcc*{$\mathcal{S}_i < \mathcal{T}_j$ and thus $\mathcal{S}_i$ should be added next}
+				
+				$i$ $\gets$ $i+1$\;
+			}
+			\Else{
+				append $\mathcal{T}_j$ to $\mathcal{L}$\tcc*{$\mathcal{T}_i < \mathcal{S}_j$ and thus $\mathcal{T}_i$ should be added next}
+				
+				$j$ $\gets$ $j+1$\;
+			}
+		}
+		
+		\BlankLine
+		
+		\tcp{The following adds any remaining elements of $\mathcal{S}$ and $\mathcal{T}$ to $\mathcal{L}$}
+		
+		\BlankLine
+		
+		\If{$i < n$}{
+			append $\mathcal{S}_i, \mathcal{S}_{i+1}, \ldots, \mathcal{S}_{n}$ to $\mathcal{L}$\;
+		}
+		
+		\BlankLine
+		
+		\If{$j < m$}{
+			append $\mathcal{S}_j, \mathcal{S}_{j+1}, \ldots, \mathcal{S}_{m}$ to $\mathcal{L}$\;
+		}
+		
+		\BlankLine
+		
+		\tcp{$\mathcal{L}$ will now contain the merged lists}
+		
+		\BlankLine
+		
+		\Return{$\mathcal{L}$}\;
+		
+	}
+	
+	\caption{Merges two lists of length $n+1$ extended words}
+	\label{alg:mergesort:merge}
+\end{algorithm}
+
+\newpage
+\section{Main Sort Algorithm}
+\label{apx:modified-mergesort:sort}
+
+\begin{algorithm}[h!]
+	
+	\Fn(){\SORT{$\mathcal{L}$}}{
+		\KwData{an unsorted list of length $n+1$ extended words $\mathcal{L}$}
+		\KwResult{returns a list of sorted words}
+		
+		\BlankLine
+		
+		\tcp{If $\mathcal{L}$ contains one or zero collections, then it is already sorted}
+		
+		\If{$\left\vert \mathcal{L} \right\vert \leq 1$}{
+			\Return $\mathcal{L}$
+		}
+		
+		\BlankLine
+		
+		\tcp{If $\mathcal{L}$ is size $2$ then it should be sorted and returned}
+		
+		\If{$\left\vert \mathcal{L} \right\vert = 2$} {
+			cmp $\gets$ \COMP($\textrm{rep}(\mathcal{L}_1)$, $\textrm{rep}(\mathcal{L}_2)$)\tcc*{compare the elements of the list}
+			
+			\BlankLine
+			
+			\uIf{$\text{cmp} = 0$}{
+				
+				\Return{$(\mathcal{L}_1 \cup \mathcal{L}_2)$}\tcc*{the collections should be combined}
+				
+			}
+			\uElseIf{$\text{cmp} < 0$}{
+				\Return{$\mathcal{L}$}\tcc*{the list is already in the correct order}
+			}
+			\Else{
+				\Return{$(\mathcal{L}_2, \mathcal{L}_1)$}\tcc*{the list was not sorted}
+			}
+			
+		}
+		
+		\BlankLine
+		
+		\tcp{$n$ is the length of the the list and $m$ is its midpoint}
+		
+		$n$ $\gets$ $\left\vert \mathcal{L} \right\vert$\;
+		$m$ $\gets$ $\left\lceil n / 2 \right\rceil$\;
+		
+		\BlankLine
+		
+		\tcp{Seperate the list into two parts based on the midpoint}
+		
+		left  $\gets$ $(\mathcal{L}_1, \mathcal{L}_2, \ldots, \mathcal{L}_{m})$\;
+		right $\gets$ $(\mathcal{L}_{m+1},\mathcal{L}_{m+2},\ldots,\mathcal{L}_{n})$\;
+		
+		\BlankLine
+		
+		\tcp{Sort the two parts of the list}
+		
+		$\mathcal{S}_{\text{left}}$  $\gets$ \SORT(left)\;
+		$\mathcal{S}_{\text{right}}$ $\gets$ \SORT(right)\;
+		
+		\BlankLine
+		
+		\tcp{Merge the sorted lists and return the result}
+		
+		\Return{\MERGE($\mathcal{S}_\text{left}$, $\mathcal{S}_\text{right}$)}\;
+	}
+	
+	\caption{Sorts a list of geodesics}
+	\label{alg:mergesort:sort}
+\end{algorithm}

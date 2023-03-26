@@ -1,0 +1,39 @@
+%  theoremstyles.sty   Alex Bishop, 10/08/17
+%
+% Provides some basic theorem types, theorems numbered by chapter
+%  and corrollaries numbered by the previous theorem
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+
+\newtheoremstyle{mystyle}
+{1em}{1em}
+{\normalfont}{}
+{\bfseries}{:}
+{0.5em}{}
+\theoremstyle{mystyle}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\newtheorem{note}[theorem]{Note}
+\newtheorem*{note*}{Note}
+
+\ifx\thechapter\undefined
+  \numberwithin{theorem}{section}
+\else
+  \numberwithin{theorem}{chapter}
+\fi
+
+\newtheorem{corollary}{Corollary}
+
+\numberwithin{corollary}{theorem}
+
+\newcommand{\thmendmark}{\hfill $\triangle$}
